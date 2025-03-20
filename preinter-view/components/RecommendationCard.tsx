@@ -16,13 +16,11 @@ const RecommendationCard: React.FC<CardProps> = ({
   name,
   contentType,
 }) => {
-  useEffect(() => {
-    console.log(Typography);
-    console.log(Text);
-  }, []);
-
   return (
-    <Flex className="flex flex-col max-w-[120px] gap-1">
+    <Flex
+      className="flex flex-col max-w-[136px] gap-1 hover:bg-gray-200 hover:border-gray-400 rounded-2xl"
+      style={{ padding: "8px", boxSizing: "border-box" }}
+    >
       <Image
         src={imageUrl}
         alt="Recommendation Image"
@@ -31,10 +29,10 @@ const RecommendationCard: React.FC<CardProps> = ({
         height={120}
         className="rounded-xl"
       />
-      <Text className="text-lg font-bold text-ellipsis overflow-hidden line-clamp-2">
+      <Text className="text-lg font-bold text-ellipsis overflow-hidden line-clamp-2 cursor-pointer">
         {name}
       </Text>
-      <Text className="text-gray-500 text-sm text-ellipsis overflow-hidden line-clamp-1">
+      <Text className="text-gray-500 text-sm text-ellipsis overflow-hidden line-clamp-1 cursor-pointer">
         {contentType}
       </Text>
     </Flex>

@@ -23,7 +23,11 @@ const ApplicationCard: React.FC<CardProps> = ({
   ratingCount = 0,
 }) => {
   return (
-    <Flex gap="8" className="items-center" style={{ padding: "8px" }}>
+    <Flex
+      gap="8"
+      className="items-center  hover:bg-gray-200 hover:border-gray-400"
+      style={{ padding: "8px" }}
+    >
       <Flex
         align="center"
         justify="center"
