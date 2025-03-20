@@ -22,16 +22,20 @@ const ApplicationCard: React.FC<CardProps> = ({
   rating = 0,
   ratingCount = 0,
 }) => {
+  const setting = {
+    maxHeight: 80,
+  };
+
   return (
     <Flex
       gap="8"
-      className="items-center  hover:bg-gray-200 hover:border-gray-400"
+      className="items-center  hover:bg-gray-200 hover:border-gray-400 cursor-pointer"
       style={{ padding: "8px" }}
     >
       <Flex
         align="center"
         justify="center"
-        className="text-4xl text-gray-400 m-4"
+        className="text-2xl text-gray-400 m-4"
         style={{ margin: "0 12px" }}
       >
         {id}
@@ -41,20 +45,16 @@ const ApplicationCard: React.FC<CardProps> = ({
           src={imageUrl}
           alt="Application Image"
           preview={false}
-          width={120}
-          height={120}
+          width={setting.maxHeight}
+          height={setting.maxHeight}
           className="rounded-full "
         />
       </Flex>
       <Flex
         vertical
         justify="space-between"
-        style={{
-          boxSizing: "border-box",
-          padding: "4px 0",
-          marginLeft: "8px",
-          minHeight: "120px",
-        }}
+        className={`box-border min-h-[${setting.maxHeight}px]`}
+        style={{ padding: "4px 0", marginLeft: "8px" }}
       >
         <Flex>
           <Text
@@ -73,8 +73,8 @@ const ApplicationCard: React.FC<CardProps> = ({
             {contentType}
           </Text>
         </Flex>
-        <Flex align="center">
-          <Rate disabled defaultValue={rating} />
+        <Flex align="center" className=" flex-wrap">
+          <Rate disabled defaultValue={rating} className="text-sm" />
           <Text
             className="max-w-full text-sm ml-2.5"
             type="secondary"

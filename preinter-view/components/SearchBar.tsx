@@ -15,16 +15,18 @@ const SearchBar: React.FC<SearchBarProps> = () => {
 
   return (
     <>
-      <Flex
-        className="absolute top-0 w-full p-5 bg-gray-400"
-        style={{ padding: "5px" }}
-      >
-        <Search
-          placeholder="搜尋"
-          variant="filled"
-          onChange={handleSearch}
-          className=" bg-gray-100 rounded-sm"
-        />
+      <Flex className=" relative min-h-[50px]">
+        <Flex
+          className="absolute top-0 w-full p-5 bg-gray-100"
+          style={{ padding: "8px" }}
+        >
+          <Search
+            placeholder="搜尋"
+            variant="filled"
+            onChange={handleSearch}
+            className=" bg-gray-200 rounded-sm"
+          />
+        </Flex>
       </Flex>
       {/* <Input placeholder="搜尋" variant="filled" onChange={handleSearch} /> */}
     </>
