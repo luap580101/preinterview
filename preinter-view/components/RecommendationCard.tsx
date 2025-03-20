@@ -29,7 +29,7 @@ const RecommendationCard: React.FC<CardProps> = ({
         height={120}
         className="rounded-xl"
       />
-      <Text className="text-lg font-bold text-ellipsis overflow-hidden line-clamp-2 cursor-pointer">
+      <Text className="text-lg font-bold text-ellipsis overflow-hidden line-clamp-2 cursor-pointer h-12">
         {name}
       </Text>
       <Text className="text-gray-500 text-sm text-ellipsis overflow-hidden line-clamp-1 cursor-pointer">
