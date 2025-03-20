@@ -1,7 +1,7 @@
 "use client";
 
 import { Flex, Image, Typography } from "antd";
-import React, { useEffect } from "react";
+import React from "react";
 
 const { Text } = Typography;
 
