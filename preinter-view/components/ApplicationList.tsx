@@ -20,6 +20,7 @@ export default function ApplicationList() {
       const data = await AppService.getFreeApplications();
       const feedData = data?.feed?.entry || [];
       setApplications(feedData);
+      console.log(feedData);
 
       // if (feedData.length > 0) {
       //   // 使用函數式更新來獲取當前的 applications
@@ -79,10 +80,10 @@ export default function ApplicationList() {
             key={index}
             imageUrl={item["im:image"][2]?.label || "https://fakeimg.pl/300/"}
             name={item["im:name"]?.label || "Unknown"}
-            contentType={item["im:contentType"]?.label || "Unknown"}
-            id={(index + 1).toString()}
+            contentType={item["title"]?.label || "Unknown"}
             rating={item["im:rating"]?.label || 0}
             ratingCount={item["im:ratingCount"]?.label || 0}
+            applicationId={(index + 1).toString()}
           />
         ))}
         {loading && (

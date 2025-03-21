@@ -6,7 +6,7 @@ import React from "react";
 const { Text } = Typography;
 
 interface CardProps {
-  id: string;
+  applicationId?: string;
   imageUrl: string;
   name: string;
   contentType: string;
@@ -15,7 +15,7 @@ interface CardProps {
 }
 
 const ApplicationCard: React.FC<CardProps> = ({
-  id,
+  applicationId,
   imageUrl,
   name,
   contentType,
@@ -32,14 +32,16 @@ const ApplicationCard: React.FC<CardProps> = ({
       className="items-center  hover:bg-gray-200 hover:border-gray-400 cursor-pointer"
       style={{ padding: "8px" }}
     >
-      <Flex
-        align="center"
-        justify="center"
-        className="text-2xl text-gray-400 m-4 w-12"
-        style={{ margin: "0 12px" }}
-      >
-        {id}
-      </Flex>
+      {!!applicationId && (
+        <Flex
+          align="center"
+          justify="center"
+          className="text-2xl text-gray-400 m-4 w-12"
+          style={{ margin: "0 12px" }}
+        >
+          {applicationId}
+        </Flex>
+      )}
       <Flex className="mx-4" style={{ margin: "0 12px" }}>
         <Image
           src={imageUrl}
