@@ -20,7 +20,6 @@ export default function ApplicationList() {
       const data = await AppService.getFreeApplications();
       const feedData = data?.feed?.entry || [];
       setApplications(feedData);
-      console.log(feedData);
 
       // if (feedData.length > 0) {
       //   // 使用函數式更新來獲取當前的 applications
