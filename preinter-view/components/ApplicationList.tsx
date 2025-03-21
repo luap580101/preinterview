@@ -1,42 +1,38 @@
-"use client";
-
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Spin } from "antd";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ApplicationCard from "@/components/ApplicationCard";
 import AppService from "@/services/AppService";
 
-export default function ApplicationList() {
+const ApplicationList = React.memo(() => {
   const [applications, setApplications] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [hasMore, setHasMore] = useState<boolean>(true);
-
-  const pageRef = useRef<number>(1);
 
   const loadApplications = async () => {
     setLoading(true);
     try {
+      const cachedData = localStorage.getItem("applications");
+      const cachedTimestamp = localStorage.getItem("applicationsTimestamp");
+
+      const currentTime = new Date().getTime();
+      const cacheExpiryTime = 10 * 60 * 1000;
+
+      if (
+        cachedData &&
+        cachedTimestamp &&
+        currentTime - Number(cachedTimestamp) < cacheExpiryTime
+      ) {
+        setApplications(JSON.parse(cachedData));
+        return;
+      }
+
       const data = await AppService.getFreeApplications();
       const feedData = data?.feed?.entry || [];
       setApplications(feedData);
 
-      // if (feedData.length > 0) {
-      //   // 使用函數式更新來獲取當前的 applications
-      //   setApplications((prevApplications) => {
-      //     const newApplications = [
-      //       ...prevApplications,
-      //       ...feedData.slice((pageRef.current - 1) * 10, pageRef.current * 10),
-      //     ];
-
-      //     // 檢查是否超過 100 筆資料
-      //     if (newApplications.length >= 100) {
-      //       setHasMore(false);
-      //     }
-      //     pageRef.current += 1;
-      //     return newApplications;
-      //   });
-      // }
+      localStorage.setItem("applications", JSON.stringify(feedData));
+      localStorage.setItem("applicationsTimestamp", currentTime.toString());
     } catch (error) {
       console.error("Error fetching applications:", error);
     } finally {
@@ -44,30 +40,8 @@ export default function ApplicationList() {
     }
   };
 
-  // const handleScroll = () => {
-  //   console.log("loadApplications page:", pageRef.current);
-
-  //   const scrollPosition =
-  //     window.innerHeight + document.documentElement.scrollTop;
-  //   const documentHeight = document.documentElement.scrollHeight;
-  //   const threshold = 0;
-
-  //   console.log({ scrollPosition, threshold, documentHeight });
-
-  //   if (scrollPosition + threshold >= documentHeight && !loading && hasMore) {
-  //     setLoading(true);
-  //     setTimeout(() => {
-  //       loadApplications();
-  //     }, 1000);
-  //   }
-  // };
-
   useEffect(() => {
     loadApplications();
-    // window.addEventListener("scroll", handleScroll);
-    // return () => {
-    //   window.removeEventListener("scroll", handleScroll);
-    // };
   }, []);
 
   return (
@@ -90,12 +64,9 @@ export default function ApplicationList() {
             <Spin size="large" />
           </div>
         )}
-        {!hasMore && (
-          <div className="text-center my-4">
-            <span>已達最底</span>
-          </div>
-        )}
       </div>
     </div>
   );
-}
+});
+
+export default ApplicationList;

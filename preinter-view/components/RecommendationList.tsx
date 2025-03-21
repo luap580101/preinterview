@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AppService from "@/services/AppService";
 
-export default function RecommendationList() {
+const RecommendationList = React.memo(() => {
   const settings = {
     dots: false,
     infinite: true,
@@ -30,7 +30,6 @@ export default function RecommendationList() {
         "topGrossingApplicationsTimestamp"
       );
 
-      // 檢查是否有有效的緩存（例如：數據緩存不超過 1 小時）
       const isCacheValid =
         cachedData &&
         cacheTimestamp &&
@@ -79,4 +78,6 @@ export default function RecommendationList() {
       </Slider>
     </div>
   );
-}
+});
+
+export default RecommendationList;
