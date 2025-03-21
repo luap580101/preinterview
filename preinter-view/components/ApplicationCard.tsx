@@ -35,7 +35,7 @@ const ApplicationCard: React.FC<CardProps> = ({
       <Flex
         align="center"
         justify="center"
-        className="text-2xl text-gray-400 m-4"
+        className="text-2xl text-gray-400 m-4 w-12"
         style={{ margin: "0 12px" }}
       >
         {id}

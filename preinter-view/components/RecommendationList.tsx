@@ -61,10 +61,6 @@ export default function RecommendationList() {
     fetchTopGrossingApplications();
   }, []);
 
-  useEffect(() => {
-    console.log(topGrossingApplications);
-  }, [topGrossingApplications]);
-
   return (
     <div className=" mt-4">
       <h1 className=" text-2xl font-bold" style={{ fontWeight: "bold" }}>
