@@ -27,6 +27,7 @@ const RecommendationCard: React.FC<CardProps> = ({
         preview={false}
         width={120}
         height={120}
+        loading="lazy"
         className="rounded-xl"
       />
       <Text className="text-lg font-bold text-ellipsis overflow-hidden line-clamp-2 cursor-pointer h-12">

@@ -49,6 +49,7 @@ const ApplicationCard: React.FC<CardProps> = ({
           preview={false}
           width={setting.maxHeight}
           height={setting.maxHeight}
+          loading="lazy"
           className="rounded-full "
         />
       </Flex>
