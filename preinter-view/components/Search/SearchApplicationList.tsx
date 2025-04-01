@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { Spin } from "antd";
-import ApplicationCard from "@/components/ApplicationCard";
+import ApplicationCard from "@/components/Application/ApplicationCard";
 import AppService from "@/services/AppService";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";

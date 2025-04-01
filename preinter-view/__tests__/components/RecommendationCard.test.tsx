@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import RecommendationCard from "../../components/RecommendationCard";
+import RecommendationCard from "../../components/Recommendation/RecommendationCard";
 import "@testing-library/jest-dom";
 
 const defaultProps = {

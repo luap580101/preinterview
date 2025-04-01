@@ -1,13 +1,14 @@
 "use client";
 
+import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import SearchBar from "@/components/SearchBar";
-import RecommendationList from "@/components/RecommendationList";
-import ApplicationList from "@/components/ApplicationList";
+import SearchBar from "@/components/Search/SearchBar";
+import RecommendationList from "@/components/Recommendation/RecommendationList";
+import ApplicationList from "@/components/Application/ApplicationList";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
-import SearchApplicationList from "@/components/SearchApplicationList";
+import SearchApplicationList from "@/components/Search/SearchApplicationList";
 
 function Home() {
   const searchQuery = useSelector((state: RootState) => state.search.query);

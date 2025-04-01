@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Spin } from "antd";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ApplicationCard from "@/components/ApplicationCard";
+import ApplicationCard from "@/components/Application/ApplicationCard";
 import AppService from "@/services/AppService";
 
 const ApplicationList = React.memo(() => {
@@ -41,6 +41,20 @@ const ApplicationList = React.memo(() => {
   };
 
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollableHeight = document.documentElement.scrollHeight;
+      const scrolledHeight = window.innerHeight + window.scrollY;
+      if (scrolledHeight >= scrollableHeight - 100 && !loading) {
+        loadApplications();
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [loading]);
+
+  useEffect(() => {
     loadApplications();
   }, []);
 
@@ -49,15 +63,21 @@ const ApplicationList = React.memo(() => {
       <div className="border-b border-black my-2"></div>
       <div className="flex flex-col">
         {applications.map((item, index) => (
-          <ApplicationCard
-            key={index}
-            imageUrl={item["im:image"][2]?.label || "https://fakeimg.pl/300/"}
-            name={item["im:name"]?.label || "Unknown"}
-            contentType={item["title"]?.label || "Unknown"}
-            rating={item["im:rating"]?.label || 0}
-            ratingCount={item["im:ratingCount"]?.label || 0}
-            applicationId={(index + 1).toString()}
-          />
+          <div className=" flex flex-col" key={index}>
+            <ApplicationCard
+              imageUrl={item["im:image"][2]?.label || "https://fakeimg.pl/300/"}
+              name={item["im:name"]?.label || "Unknown"}
+              contentType={item["title"]?.label || "Unknown"}
+              rating={item["im:rating"]?.label || 0}
+              ratingCount={item["im:ratingCount"]?.label || 0}
+              applicationId={(index + 1).toString()}
+            />
+            {(index + 1) % 10 === 0 && (
+              <div className=" my-2">
+                <hr />
+              </div>
+            )}
+          </div>
         ))}
         {loading && (
           <div className="flex justify-center my-4">
