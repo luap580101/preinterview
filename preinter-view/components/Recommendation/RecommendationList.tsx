@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AppService from "@/services/AppService";
+import { RecommendationEntry } from "@/type/recommendation";
 
 const RecommendationList = React.memo(() => {
   const settings = {
@@ -19,9 +20,9 @@ const RecommendationList = React.memo(() => {
     swipeToSlide: true,
   };
 
-  const [topGrossingApplications, setTopGrossingApplications] = useState<any[]>(
-    []
-  );
+  const [topGrossingApplications, setTopGrossingApplications] = useState<
+    RecommendationEntry[]
+  >([]);
 
   useEffect(() => {
     const fetchTopGrossingApplications = async () => {

@@ -4,9 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ApplicationCard from "@/components/Application/ApplicationCard";
 import AppService from "@/services/AppService";
+import { ApplicationEntry } from "@/type/application";
 
 const ApplicationList = React.memo(() => {
-  const [applications, setApplications] = useState<any[]>([]);
+  const [applications, setApplications] = useState<ApplicationEntry[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const loadApplications = async () => {
